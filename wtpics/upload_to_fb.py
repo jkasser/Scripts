@@ -57,6 +57,6 @@ if __name__ == '__main__':
             # post something here
             pi.post_to_facebook()
             # write the current time
-            pi.write_last_post_time(datetime.now())
+            pi.write_last_post_time(datetime.utcnow())
         else:
             sleep(600)
