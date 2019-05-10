@@ -109,3 +109,5 @@ venv.bak/
 # file: ~/.gitignore_global
 .DS_Store
 .idea
+
+config.py
