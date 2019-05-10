@@ -2,6 +2,7 @@ from fbchat import Client
 from fbchat.models import *
 import os
 from random import choice
+from time import sleep
 from datetime import datetime, timedelta
 from dateutil import parser
 from wtpics.config import FB_PW, FB_UN, GROUP_CHAT_ID
@@ -11,9 +12,16 @@ class PostImage:
     EVENT_FILE = './events.txt'
     PIC_DIR = './data'
 
+    def __init__(self):
+        self.client = self.fb_login()
+
     def fb_login(self):
         self.client = Client(FB_UN, FB_PW)
         return self.client
+
+    def check_login_status(self):
+        if not self.client.isLoggedIn():
+            self.fb_login()
 
     def post_to_facebook(self):
         random_pic = choice(os.listdir(self.PIC_DIR))
@@ -42,10 +50,13 @@ class PostImage:
 
 if __name__ == '__main__':
     pi = PostImage()
-    if pi.check_if_should_post():
-        # login
-        pi.fb_login()
-        # post something here
-        pi.post_to_facebook()
-        # write the current time
-        pi.write_last_post_time(datetime.now())
+    while True:
+        if pi.check_if_should_post():
+            # login if we arent anymore
+            pi.check_login_status()
+            # post something here
+            pi.post_to_facebook()
+            # write the current time
+            pi.write_last_post_time(datetime.now())
+        else:
+            sleep(600)
