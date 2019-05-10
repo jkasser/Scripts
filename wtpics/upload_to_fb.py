@@ -1,11 +1,12 @@
 from fbchat import Client
 from fbchat.models import *
-import os
 from random import choice
 from time import sleep
 from datetime import datetime, timedelta
 from dateutil import parser
-from wtpics.config import FB_PW, FB_UN, GROUP_CHAT_ID
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(__file__, "..")))
+from config import *
 
 
 class PostImage:
