@@ -25,10 +25,16 @@ class PostImage:
             self.fb_login()
 
     def post_to_facebook(self):
-        random_pic = choice(os.listdir(self.PIC_DIR))
-        file = os.path.abspath(f'{self.PIC_DIR}/{random_pic}')
-        self.client.sendLocalImage(file, message=Message(text=', '.join((str(random_pic).split('.')[0]).split('_'))), thread_id=GROUP_CHAT_ID, thread_type=ThreadType.GROUP)
-        os.remove(file)
+        if len(os.listdir(self.PIC_DIR)) > 0:
+            if len(os.listdir(self.PIC_DIR)) == 1:
+                self.client.sendMessage(message=Message('This is my last photo!!! Better restock me...'),
+                                        thread_id=GROUP_CHAT_ID, thread_type=ThreadType.GROUP)
+            random_pic = choice(os.listdir(self.PIC_DIR))
+            file = os.path.abspath(f'{self.PIC_DIR}/{random_pic}')
+            self.client.sendLocalImage(file, message=Message(text=', '.join((str(random_pic).split('.')[0]).split('_'))), thread_id=GROUP_CHAT_ID, thread_type=ThreadType.GROUP)
+            os.remove(file)
+        else:
+            self.client.sendMessage(message=Message('Hey you putz! I\'m out of pictures to send!'), thread_id=GROUP_CHAT_ID, thread_type=ThreadType.GROUP)
 
     def check_if_should_post(self):
         with open(self.EVENT_FILE, 'r') as f:
