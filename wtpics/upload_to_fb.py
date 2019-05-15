@@ -48,7 +48,7 @@ class PostImage:
                         return False
 
     def calc_time_elapsed(self, last_write_time):
-        next_post_time = parser.parse(last_write_time) + timedelta(hours=23, minutes=59)
+        next_post_time = parser.parse(last_write_time) + timedelta(hours=23, minutes=45)
         return next_post_time
 
     def write_last_post_time(self, new_time):
@@ -68,4 +68,4 @@ if __name__ == '__main__':
             pi.write_last_post_time(datetime.utcnow())
         else:
             print(f'Not time yet! Current time is {datetime.utcnow()}, sleeping for 5 minutes')
-            sleep(600)
+            sleep(300)
