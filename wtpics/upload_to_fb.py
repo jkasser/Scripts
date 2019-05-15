@@ -62,8 +62,10 @@ if __name__ == '__main__':
             # login if we arent anymore
             pi.check_login_status()
             # post something here
+            print('Time to post! Attempting post now...')
             pi.post_to_facebook()
             # write the current time
             pi.write_last_post_time(datetime.utcnow())
         else:
+            print(f'Not time yet! Current time is {datetime.utcnow()}, sleeping for 5 minutes')
             sleep(600)
