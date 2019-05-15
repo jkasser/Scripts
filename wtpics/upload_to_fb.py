@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from dateutil import parser
 import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(__file__, ".")))
-from wtpics.config import *
+from config import *
 
 
 class PostImage:
