@@ -40,7 +40,7 @@ class PostImage:
         with open(self.EVENT_FILE, 'r') as f:
             for line in f.readlines():
                 if 'last_post' in line:
-                    last_write_time = line.split(':')[1]
+                    last_write_time = line.split('=')[1]
                     next_post_time = self.calc_time_elapsed(last_write_time)
                     if datetime.utcnow() >= next_post_time:
                         return True
