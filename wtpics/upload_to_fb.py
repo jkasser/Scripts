@@ -53,7 +53,7 @@ class PostImage:
 
     def write_last_post_time(self, new_time):
         with open(self.EVENT_FILE, 'w') as f:
-            f.write(f'last_post:{new_time}')
+            f.write(f'last_post={new_time}')
 
 if __name__ == '__main__':
     pi = PostImage()
