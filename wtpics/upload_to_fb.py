@@ -19,6 +19,9 @@ class PostImage:
     def fb_login(self):
         self.client = Client(FB_UN, FB_PW)
         return self.client
+    
+    def fb_logout(self):
+        self.client.logout()
 
     def check_login_status(self):
         if not self.client.isLoggedIn():
@@ -64,6 +67,8 @@ if __name__ == '__main__':
             # post something here
             print('Time to post! Attempting post now...')
             pi.post_to_facebook()
+            #logout after post
+            pi.fb_logout()
             # write the current time
             pi.write_last_post_time(datetime.utcnow())
         else:
